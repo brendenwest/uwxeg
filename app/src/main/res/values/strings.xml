@@ -17,7 +17,7 @@
     <string name="invalid_lat_long_used">Invalid Lat/Long</string>
     <string name="demo_list_header">Washington Cities</string>
     <string name="title_activity_detail">Detail</string>
-    <string name="title_activity_recycler">Movies w/ RecyclerView</string>
+    <string name="title_activity_movies">Movies</string>
     <string name="title_activity_recycler_web">Seattle Traffic Cameras</string>
     <string name="title_activity_list">Simple ListView</string>
     <string name="title_activity_about">About</string>

@@ -1,5 +1,6 @@
 package us.brisksoft.mobilefun
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -7,12 +8,27 @@ import androidx.appcompat.widget.Toolbar
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Button
+import android.widget.GridView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private var mDrawerLayout: DrawerLayout? = null
+
+    // Array of strings...
+    internal var gridItems = arrayOf(
+        "Movies",
+        "item 2",
+        "item 3",
+        "item 4"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                 mDrawerLayout?.closeDrawers()
                 val intent: Intent
                 when (menuItem.itemId) {
-//                    R.id.nav_movies -> {
-//                        intent = Intent(this@MainActivity, RecyclerActivity::class.java)
-//                        startActivity(intent)
-//                    }
+                    R.id.nav_movies -> {
+                        intent = Intent(this@MainActivity, MoviesActivity::class.java)
+                        startActivity(intent)
+                    }
 //                    R.id.nav_map -> {
 //                        intent = Intent(this@MainActivity, MapActivity::class.java)
 //                        startActivity(intent)
@@ -56,6 +72,9 @@ class MainActivity : AppCompatActivity() {
 
                 true
             })
+
+        val gridview = findViewById<GridView>(R.id.gridview)
+        gridview.setAdapter(GridAdapter(this))
 
     }
 
@@ -74,6 +93,60 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    inner class GridAdapter(private val mContext: Context) : BaseAdapter() {
+
+        override fun getCount(): Int {
+            return gridItems.size
+        }
+
+        override fun getItem(position: Int): Any? {
+            return null
+        }
+
+        override fun getItemId(position: Int): Long {
+            return 0
+        }
+
+        // create a new ImageView for each item referenced by the Adapter
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val button: Button
+            if (convertView == null) {
+                // if it's not recycled, initialize some attributes
+                button = Button(mContext)
+            } else {
+                button = convertView as Button
+            }
+
+            button.setText(gridItems[position])
+            button.id = position
+            button.setOnClickListener(BtnOnClickListener())
+            return button
+        }
+
+    }
+
+    internal inner class BtnOnClickListener : View.OnClickListener {
+
+        override fun onClick(v: View) {
+
+            val intent: Intent
+            when (v.id) {
+                0 -> {
+                    intent = Intent(baseContext, MoviesActivity::class.java)
+                    startActivity(intent)
+                }
+                else -> {
+                    val b = v as Button
+                    val label = b.text.toString()
+                    Toast.makeText(
+                        this@MainActivity, label,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 }
 
