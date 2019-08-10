@@ -23,16 +23,27 @@
                 tools:showIn="@layout/activity_main">
 
             <TextView
-                    android:id="@+id/grid_header"
+                    android:id="@+id/user_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/demo_pages"
+                    android:text="@string/about_me"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/grid_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/demo_pages"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/user_info" />
 
             <GridView
                     android:id="@+id/gridview"
@@ -44,7 +55,7 @@
                     android:columnWidth="0dp"
                     android:gravity="center"
                     android:horizontalSpacing="10dp"
-                    android:numColumns="3"
+                    android:numColumns="2"
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
