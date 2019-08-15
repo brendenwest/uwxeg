@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     // Array of strings...
     internal var gridItems = arrayOf(
         "Movies",
-        "item 2",
+        "Location",
         "item 3",
         "item 4"
     )
@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
                         intent = Intent(this@MainActivity, MoviesActivity::class.java)
                         startActivity(intent)
                     }
-//                    R.id.nav_map -> {
-//                        intent = Intent(this@MainActivity, MapActivity::class.java)
-//                        startActivity(intent)
-//                    }
+                    R.id.nav_location -> {
+                        intent = Intent(this@MainActivity, LocationActivity::class.java)
+                        startActivity(intent)
+                    }
 //                    R.id.nav_map_cams -> {
 //                        intent = Intent(this@MainActivity, TrafficCamMap::class.java)
 //                        startActivity(intent)
@@ -135,6 +135,10 @@ class MainActivity : AppCompatActivity() {
             when (v.id) {
                 0 -> {
                     intent = Intent(baseContext, MoviesActivity::class.java)
+                    startActivity(intent)
+                }
+                1 -> {
+                    intent = Intent(baseContext, LocationActivity::class.java)
                     startActivity(intent)
                 }
                 else -> {

@@ -19,7 +19,7 @@
     <string name="title_activity_movies">Movies</string>
     <string name="title_activity_recycler_web">Seattle Traffic Cameras</string>
     <string name="title_activity_about">About</string>
-    <string name="title_activity_map">Locations</string>
+    <string name="title_activity_map">Location</string>
     <string name="title_activity_movie">Movie Details</string>
     <string name="title_activity_traffic_cam_map">Traffic Cam Map</string>
     <string name="title_activity_movie_list">Movies w/ ListView</string>

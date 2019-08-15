@@ -3,6 +3,7 @@
         package="us.brisksoft.mobilefun">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
             android:allowBackup="true"
@@ -10,15 +11,27 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:usesCleartextTraffic="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MoviesActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:usesCleartextTraffic="true">
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="@string/google_maps_api_key" />
+        <service
+                android:name=".FetchAddressIntentService"
+                android:exported="false"></service>
+
+        <activity
+                android:name=".LocationActivity"
+                android:label="@string/title_activity_map"
+                android:parentActivityName=".MainActivity" />
+        <activity
+                android:name=".MoviesActivity"
                 android:label="@string/title_activity_movies"
-                android:parentActivityName=".MainActivity"></activity>
+                android:parentActivityName=".MainActivity" />
         <activity
                 android:name=".AboutActivity"
                 android:label="@string/title_activity_about"
-                android:parentActivityName=".MainActivity"></activity>
+                android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
