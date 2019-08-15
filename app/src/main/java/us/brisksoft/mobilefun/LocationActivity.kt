@@ -43,7 +43,7 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, LocationListen
     private var mLastLocation: Location? = null
     private var mMap: GoogleMap? = null
 
-    private val MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9
+    private val MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 9
     protected var mAddressRequested: Boolean = false
     protected var mAddressOutput: String? = null
 
@@ -102,21 +102,18 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, LocationListen
         Log.d("LOCATION", "getLocation")
         if (ActivityCompat.checkSelfPermission(
                 this,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             Log.d("LOCATION", "permissionGranted")
             mFusedLocationClient.lastLocation
                 .addOnSuccessListener { location : Location? ->
-                    fun onSuccess(location: Location?) {
-                        Log.d("LOCATION", "gotLocation")
-
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
-                            mLastLocation = location
-                            updateUI()
-                        }
+                    Log.d("LOCATION", "gotLocation")
+                    // Got last known location. In some rare situations this can be null.
+                    if (location != null) {
+                        // Logic to handle location object
+                        mLastLocation = location
+                        updateUI()
                     }
                 }
         } else {
@@ -124,7 +121,7 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, LocationListen
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 )
             ) {
 
@@ -139,8 +136,8 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                    MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION
                 )
 
             }
@@ -156,7 +153,7 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, LocationListen
     ) {
         Log.d("LOCATION", "onRequestPermissionsResult")
         when (requestCode) {
-            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
+            MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION -> {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
